@@ -12,7 +12,7 @@ Control  class == have function
 Entity  class == have Data
 
 */
-//#include"Account.h"
+
 #include"AccountHandler.h"
 #include"SYSYEM_MENU.h"
 #include<limits>

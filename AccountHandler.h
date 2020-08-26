@@ -94,6 +94,9 @@ public:
 			switch (static_cast<CHOICE>(inumber))
 			{
 			case CHOICE::CHOICE_GO:
+				//early reurn to check number of account
+				if (_accNum >= MAX_NUMBER)
+					return;
 
 				std::cout << "Write your accountid: ";
 				std::getline(std::cin, accid);
@@ -131,7 +134,7 @@ public:
 			int count = 0;
 			std::cout << "Write your account id ";
 			std::getline(std::cin, inputID);
-				for (int i = 0; i < MAX_NUMBER; i++)
+				for (int i = 0; i < _accNum; i++)
 				{
 					if (_Acoount_Arr[i]->getAccID() == inputID)
 					{
@@ -158,11 +161,11 @@ public:
 						}//while end
 						_Acoount_Arr[i]->Deposit(money);
 						std::cout << "Deposit Done!" << std::endl;
-						break;
+						return; //return exit for
 					}//end if
 				
 				}//end for
-				
+				std::cout << "Wrong account ID" << std::endl;
 		}//end function
 
 		void WithdrawMoney()
@@ -172,7 +175,7 @@ public:
 			int count = 0;
 			std::cout << "Write your account id ";
 			std::getline(std::cin, inputID);
-			for (int i = 0; i < MAX_NUMBER; i++)
+			for (int i = 0; i < _accNum; i++)
 			{
 				if (_Acoount_Arr[i]->getAccID() == inputID)
 				{
@@ -186,6 +189,7 @@ public:
 							std::cin.clear();
 							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 							std::cout << "Wrong moeny Please try again" << std::endl;
+							std::cout << "Your balance is: " << _Acoount_Arr[i]->getBalance() << std::endl;
 							count++;
 							std::cout << "Error count: " << count << std::endl;
 							if (count == 3)
@@ -199,10 +203,11 @@ public:
 					}//end while
 					_Acoount_Arr[i]->Withdrawal(money);
 					std::cout << "Withdraw Done!" << std::endl;
-					break; //break for
+					return; //return exit for
 				}//end if
-				
+
 			}//end for
+			std::cout << "Wrong account ID" << std::endl;
 		}//end function
 
 
