@@ -1,11 +1,15 @@
+/*
+20/08/26
+
+Toy_Project - Bankaccount management project
+
+version 0.1
+
+
+*/
 #include"Account.h"
 #include"SYSYEM_MENU.h"
 #include<limits>
-
-
-
-//std::getline(std::cin, accid);
-
 
 int main()
 {
