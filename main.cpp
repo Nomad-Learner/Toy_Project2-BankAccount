@@ -3,14 +3,15 @@
 
 Toy_Project - Bankaccount management project
 
-version 0.2
+branch
+-version 0.2
 
 
 */
 #include"Account.h"
 #include"SYSYEM_MENU.h"
 #include<limits>
-adsfasfadsfas
+
 int main()
 {
 	std::string accid;
