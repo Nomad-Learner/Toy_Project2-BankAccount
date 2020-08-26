@@ -3,13 +3,11 @@
 
 Toy_Project - Bankaccount management project
 
--version 0.2
+-version 0.3
 
 ==>main point is 
 
-Control  class == have function
-
-Entity  class == have Data
+Inheritance
 
 */
 
