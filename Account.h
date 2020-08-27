@@ -1,6 +1,7 @@
 #pragma once
 
 #include"CHOICE.h"
+#include"BoundCheckArray.h"
 #include<string>
 #include<iostream>
 #include<limits>
@@ -48,8 +49,6 @@ public:
 	{
 		return _UserID;
 	}
-
-
 
 };
 

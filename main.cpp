@@ -3,12 +3,13 @@
 
 Toy_Project - Bankaccount management project
 
--version 0.3
+-version 0.4
 
 ==>main point is 
 
-Inheritance
-&& base class pointer can have derived class address && why virtual function is needed
+operator overloading && class template 
+
+
 */
 
 #include"AccountHandler.h"
@@ -18,7 +19,6 @@ Inheritance
 int main()
 {
 	using namespace std;
-	
 	AccountHandler manager;
 	
 	while (true)
@@ -62,8 +62,8 @@ int main()
 			break;
 
 		case MENU::MEMU_SHOWINFO:
-			
-			manager.ShowAllInfo();
+		
+			cout << manager << endl;
 			break;
 
 		}//end switch

@@ -17,13 +17,14 @@ have funciotn
 #include"HIGHCreditAccount.h"
 #include"CREDIT_GRADE.h"
 #include"InterestRate.h"
+#include"BoundCheckArray.h"
 
 class AccountHandler
 {
 private:
 	static const int MAX_NUMBER = 100;
 	int _accNum ;
-	Account* _Acoount_Arr[MAX_NUMBER]; 
+	BoundCheckArray<Account*> _Acoount_Arr;
 
 public:
 	
@@ -50,11 +51,24 @@ public:
 			if (_Acoount_Arr[i] != nullptr)
 			{
 				_Acoount_Arr[i]->ShowAllInfo();
-
 			}
-
 		}
 	}
+
+	/*const AccountHandler& accountHandler 이렇게 하면 객체가 소멸되어버린다.\
+	operator overloading*/
+	friend std::ostream& operator << (std::ostream& out, const AccountHandler& accountHandler)
+	{
+		for (int i = 0; i < MAX_NUMBER; i++)
+		{
+			if (accountHandler._Acoount_Arr[i] != nullptr)
+			{
+				accountHandler._Acoount_Arr[i]->ShowAllInfo();
+			}
+		}
+		return out;
+	}
+
 
 	void ShowMenu()
 	{
@@ -64,7 +78,6 @@ public:
 		std::cout << "3.Withdrawal" << std::endl;
 		std::cout << "4.Show account info" << std::endl;
 		std::cout << "5.Exit acoount program" << std::endl;
-
 	}
 
 		void MakeAccount()
@@ -154,7 +167,7 @@ public:
 				}
 				else
 					break;
-			}
+			} 
 			_Acoount_Arr[_accNum++] = new NormalAccount(accid, userid, money,irate);//parent class pointer -> derived class 
 		}//end MakeNormalAccount
 

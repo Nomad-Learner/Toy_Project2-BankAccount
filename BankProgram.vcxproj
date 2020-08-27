@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountHandler.h" />
+    <ClInclude Include="BoundCheckArray.h" />
     <ClInclude Include="CHOICE.h" />
     <ClInclude Include="CREDIT_GRADE.h" />
     <ClInclude Include="HIGHCreditAccount.h" />
