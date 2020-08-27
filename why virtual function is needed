@@ -1,0 +1,15 @@
+_Acoount_Arr[i]->Deposit(money); 여기서
+
+_Acoount_Arr[i]가 안에 있는 객체를 NormalAcoount 인지 HighCreditAccount인지 구분을 어떻게 하지?
+
+객체 생성할 때마다 뒤에 구분ID NormalAcoount는 0을 붙이고  HighCreditAccount에는 1을 인자로 받아서
+
+뒤에가 0인지 1인지에 따라 deposit 함수 안에 if문을 작성하면 되나 했다.
+
+하지만 virtual 함수가 있다.
+
+virtual 함수를 통해서 _Acoount_Arr[i]안에 있는 객체가 V-table을 참고해서 자기 클래스에 있는 deposit 함수를 사용한다.
+
+함수의 겉모양은 같은데 객체마다 기능이 달라야 하는데 어떻게하지???하면 가상함수 생각하기.
+
+또 자식 클래스의 deposit 함수안에서 부모 클래스의 deposit 함수를 :: 이용해서 사용할 수 있다는 거 잊지 말기.
