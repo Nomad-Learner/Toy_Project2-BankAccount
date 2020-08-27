@@ -14,7 +14,7 @@ private:
 
 public:
 
-	Account(const std::string& accid="default",const std::string& userid="default" , const double balance=0) : _AccountID(accid)
+	Account(const std::string& accid="default",const std::string& userid="default" , const double& balance=0) : _AccountID(accid)
 		,_UserID(userid)
 		,_balance(balance)
 	{}
@@ -25,7 +25,7 @@ public:
 
 	}
 	
-	void Deposit(const double& money)
+	virtual void Deposit(const double& money)
 	{
 		_balance += money;
 	}

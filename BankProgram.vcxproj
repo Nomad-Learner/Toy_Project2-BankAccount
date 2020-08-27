@@ -89,6 +89,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,12 +143,19 @@
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="AccountHandler.cpp" />
+    <ClCompile Include="HIGHCreditAccount.cpp" />
+    <ClCompile Include="InterestRate.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NormalAccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountHandler.h" />
     <ClInclude Include="CHOICE.h" />
+    <ClInclude Include="CREDIT_GRADE.h" />
+    <ClInclude Include="HIGHCreditAccount.h" />
+    <ClInclude Include="InterestRate.h" />
+    <ClInclude Include="NormalAccount.h" />
     <ClInclude Include="SYSYEM_MENU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,12 +13,17 @@ have funciotn
 #include<iostream>
 #include<limits>
 #include "Account.h"
+#include"NormalAccount.h"
+#include"HIGHCreditAccount.h"
+#include"CREDIT_GRADE.h"
+#include"InterestRate.h"
+
 class AccountHandler
 {
 private:
 	static const int MAX_NUMBER = 100;
 	int _accNum ;
-	Account* _Acoount_Arr[MAX_NUMBER];
+	Account* _Acoount_Arr[MAX_NUMBER]; 
 
 public:
 	
@@ -64,17 +69,14 @@ public:
 
 		void MakeAccount()
 		{
-			std::string accid;
-			std::string userid;
-			double money;
 			int inumber;//input number
 			int count = 0;
-			std::cout << "=================Making account=======================" << std::endl;
-			std::cout << "if you want to go back please write number 2 or make account please write number 1" << std::endl;
+			std::cout << "========================Making account=======================" << std::endl;
+			std::cout << "if you want to make NormalAccount input number 1, or if you want to make HighCreditAccount input number 2." << std::endl;
 			while (true)
 			{
 				std::cin >> inumber;
-				if (std::cin.fail())
+				if (std::cin.fail()|| inumber<1||inumber>2) //exception
 				{
 					std::cin.clear();
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -83,42 +85,28 @@ public:
 					if (count == 3)
 					{
 						std::cout << "Too many Wrong input go back to Menu" << std::endl;
-
+						return;
 					}
-
 				}
 				else
 					break;
 			}
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignore enter key
 			switch (static_cast<CHOICE>(inumber))
 			{
-			case CHOICE::CHOICE_GO:
+			case CHOICE::CHOICE_NORMALACCOUNT:
 				//early reurn to check number of account
 				if (_accNum >= MAX_NUMBER)
 					return;
 
-				std::cout << "Write your accountid: ";
-				std::getline(std::cin, accid);
-				std::cout << "Write your userid: ";
-				std::getline(std::cin, userid);
-				std::cout << "Money you want to deposit: ";
-				while (true)
-				{
-					std::cin >> money;
-					if (std::cin.fail() || money < 0)
-					{
-						std::cin.clear();
-						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-						std::cout << "Wrong moeny Please try again" << std::endl;
+				MakeNormalAccount();
+				break;
 
-					}
-					else
-						break;
-				}
-				_Acoount_Arr[_accNum++]= new Account(accid, userid, money);
-
-			case CHOICE::CHOICE_BACK:
+			case CHOICE::CHOICE_HIGHCREDITACCOUNT:
+				//early reurn to check number of account
+				if (_accNum >= MAX_NUMBER)
+					return;
+				MakeHighCreditAccount();
 
 				break;
 
@@ -126,6 +114,130 @@ public:
 				break;
 			}//end case
 		}//end MakeAccount function
+
+		void MakeNormalAccount()
+		{
+			std::cout << "=======================[Normal_Account]============================" << std::endl;
+			std::string accid;
+			std::string userid;
+			double money;
+			double irate; //interest rate
+			std::cout << "Write your accountid: ";
+			std::getline(std::cin, accid);
+			std::cout << "Write your userid: ";
+			std::getline(std::cin, userid);
+			std::cout << "Money you want to deposit: ";
+			while (true)
+			{
+				std::cin >> money;
+				if (std::cin.fail() || money < 0)
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Wrong moeny Please try again" << std::endl;
+
+				}
+				else
+					break;
+			}
+			
+			std::cout << "Input basic interest rate ";
+			while (true)
+			{
+				std::cin >> irate;
+				if (std::cin.fail() || money < 0)
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Wrong interest rate Please try again" << std::endl;
+
+				}
+				else
+					break;
+			}
+			_Acoount_Arr[_accNum++] = new NormalAccount(accid, userid, money,irate);//parent class pointer -> derived class 
+		}//end MakeNormalAccount
+
+		void MakeHighCreditAccount()
+		{
+			std::cout << "=======================[HighCredit_Account]============================" << std::endl;
+			std::string accid;
+			std::string userid;
+			double money;
+			double irate; //interest rate
+			std::cout << "Write your accountid: ";
+			std::getline(std::cin, accid);
+			std::cout << "Write your userid: ";
+			std::getline(std::cin, userid);
+			std::cout << "Money you want to deposit: ";
+			while (true)
+			{
+				std::cin >> money;
+				if (std::cin.fail() || money < 0)
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Wrong moeny Please try again" << std::endl;
+
+				}
+				else
+					break;
+			}
+
+			std::cout << "Input basic interest_rate: ";
+			while (true)
+			{
+				std::cin >> irate;
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Wrong interest rate Please try again" << std::endl;
+
+				}
+				else
+					break;
+			}
+
+			int igrade; //input grade
+			double cgrade=0; //credit grade
+			std::cout << "Credit Grade(1toA, 2toB, 3toC): ";
+			while (true)
+			{
+				std::cin >> igrade;
+				if (std::cin.fail() || igrade < 1 || igrade > 3 )
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Wrong credit grade Please try again" << std::endl;
+
+				}
+				else
+					break;
+			}
+			switch (static_cast<CREDIT_GRADE>(igrade))
+			{
+			case CREDIT_GRADE::CREDIT_A :
+
+				cgrade = InterestRate::Credit_A;
+
+				break; 
+
+			case CREDIT_GRADE::CREDIT_B:
+
+				cgrade = InterestRate::Credit_B;
+				break;
+
+
+			case CREDIT_GRADE::CREDIT_C:
+
+				cgrade = InterestRate::Credit_C;
+				break;
+
+			}
+			_Acoount_Arr[_accNum++] = new HIGHCreditAccount(accid, userid, money, irate, cgrade);//parent class pointer -> derived class 
+
+		}//end MakeHighCreditAccount
 
 		void DepositMoney()
 		{
@@ -209,10 +321,6 @@ public:
 			}//end for
 			std::cout << "Wrong account ID" << std::endl;
 		}//end function
-
-
-
-
 
 
 };

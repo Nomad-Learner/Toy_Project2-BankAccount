@@ -8,7 +8,7 @@ Toy_Project - Bankaccount management project
 ==>main point is 
 
 Inheritance
-
+&& base class pointer can have derived class address && why virtual function is needed
 */
 
 #include"AccountHandler.h"
@@ -25,6 +25,7 @@ int main()
 	{
 		manager.ShowMenu();
 		int inumber; //input number
+		std::cout << "INPUT: ";
 		cin >> inumber;
 
 		//Exception
